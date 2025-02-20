@@ -1,6 +1,6 @@
 import express from "express";
 import userRouter from "./routes/user.routes.js";
-import errorMiddlewar from "./controllers/middlewares/Error.js";
+import errorMiddlewar from "./middlewares/Error.js";
 const app = express();
 
 app.listen(4000, () =>
