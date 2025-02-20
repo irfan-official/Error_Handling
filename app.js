@@ -1,5 +1,6 @@
 import express from "express";
 import userRouter from "./routes/user.routes.js";
+import errorMiddlewar from "./controllers/middlewares/Error.js";
 const app = express();
 
 app.listen(4000, () =>
@@ -7,3 +8,5 @@ app.listen(4000, () =>
 );
 
 app.use(userRouter);
+
+app.use(errorMiddlewar);
