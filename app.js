@@ -23,11 +23,13 @@ app.get("/", (req, res, next) => {
   try {
     res.status(200).send(hello);
   } catch (err) {
-    next(
+    console.log("ErrorCode", err.status);
+    return next(
       new Error(
         JSON.stringify({
           previousError: err.message,
           customError: "abe sale",
+          ErrorCode: err.status,
         })
       )
     );
@@ -48,11 +50,12 @@ app.use((err, req, res, next) => {
   return res.status(500).json({
     "err.message": JSON.parse(err.message),
     "req.fresh": req.fresh,
+    "err.status": err.status || 500,
   });
 });
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log(`App started at http://localhost:${process.env.PORT || 3000}/`);
+  console.log(`App started at http://localhost:${process.env.PORT || 3000}`);
 });
 
 export default app;
